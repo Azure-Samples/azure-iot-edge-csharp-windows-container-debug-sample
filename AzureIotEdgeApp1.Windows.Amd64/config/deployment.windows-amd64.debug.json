@@ -47,7 +47,7 @@
             "restartPolicy": "always",
             "settings": {
               "image": "iotedgemodule1:0.0.1-windows-amd64.debug",
-              "createOptions": "{\"HostConfig\":{\"PortBindings\":{\"4022/tcp\":[{\"HostPort\":\"4022\"}]}}}"
+              "createOptions": "{\"ExposedPorts\":{\"4022/tcp\": {}}, \"HostConfig\":{\"PortBindings\":{\"4022/tcp\":[{\"HostPort\":\"4022\"}]}}}"
             }
           }
         }

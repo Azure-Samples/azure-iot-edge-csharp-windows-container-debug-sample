@@ -50,6 +50,9 @@ if %ERRORLEVEL% GTR 8 (
 echo Building container...
 docker build -t %DockerImageName% --build-arg VS_REMOTE_DEBUGGER_PATH=%LOCAL_BIN_STAGING_DIR% --build-arg VS_OUT_DIR=%VS_OUT_DIR%  -f Dockerfile.windows-amd64.debug . 
 
+docker tag %DockerImageName% turenlong/%DockerImageName%.csharp
+docker push turenlong/%DockerImageName%.csharp
+
 echo Stop module in container...
 iotedgehubdev stop
 
@@ -107,6 +110,6 @@ goto :EOF
 echo.
 echo Usage:
 echo.
-echo    NanoDockerBuild.cmd [full-path-to-test-binaries]
+echo    BuildAndRun.cmd
 echo.
 goto :EOF
