@@ -50,8 +50,9 @@ if %ERRORLEVEL% GTR 8 (
 echo Building container...
 docker build -t %DockerImageName% --build-arg VS_REMOTE_DEBUGGER_PATH=%LOCAL_BIN_STAGING_DIR% --build-arg VS_OUT_DIR=%VS_OUT_DIR%  -f Dockerfile.windows-amd64.debug . 
 
-docker tag %DockerImageName% turenlong/%DockerImageName%.csharp
-docker push turenlong/%DockerImageName%.csharp
+# you can push image to docker hub use the commands below:
+# docker tag %DockerImageName% yourRepoName/%DockerImageName%
+# docker push yourRepoName/%DockerImageName%
 
 echo Stop module in container...
 iotedgehubdev stop
