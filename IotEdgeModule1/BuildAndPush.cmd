@@ -50,16 +50,9 @@ if %ERRORLEVEL% GTR 8 (
 echo Building container...
 docker build -t %DockerImageName% --build-arg VS_REMOTE_DEBUGGER_PATH=%LOCAL_BIN_STAGING_DIR% --build-arg VS_OUT_DIR=%VS_OUT_DIR%  -f Dockerfile.windows-amd64.debug . 
 
-# you can push image to docker hub use the commands below:
-# docker tag %DockerImageName% yourRepoName/%DockerImageName%
-# docker push yourRepoName/%DockerImageName%
-
-echo Stop module in container...
-iotedgehubdev stop
-
-
-echo Start edge module in container...
-iotedgehubdev start -d "..\AzureIotEdgeApp1.Windows.Amd64\config\deployment.windows-amd64.debug.json"
+echo Push image...
+docker tag %DockerImageName% [Your Registry Server]/%DockerImageName%
+docker push [Your Registry Server]/%DockerImageName%
 
 if ERRORLEVEL 1 (
     echo Encountered error while building Container, exiting..
@@ -111,6 +104,6 @@ goto :EOF
 echo.
 echo Usage:
 echo.
-echo    BuildAndRun.cmd
+echo    BuildAndPush.cmd
 echo.
 goto :EOF
